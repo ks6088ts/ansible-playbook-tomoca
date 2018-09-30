@@ -4,3 +4,7 @@
     name: "{{ common_packages }}"
     state: present
     update_cache: yes
+
+- name: "Setup firewall via ufw for sakura vps servers "
+  include_tasks: sakura-ufw.yml
+  when: inventory_hostname in groups['sakuraservers']
