@@ -9,3 +9,7 @@ go_get:
   url: github.com/gorilla/websocket
 - name: mysql
   url: github.com/go-sql-driver/mysql
+- name: grpc
+  url: google.golang.org/grpc
+- name: protoc-gen-go
+  url: github.com/golang/protobuf/protoc-gen-go
