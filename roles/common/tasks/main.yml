@@ -1,5 +1,6 @@
 ---
 - name: Install common packages
+  become: yes
   apt:
     name: "{{ common_packages }}"
     state: present

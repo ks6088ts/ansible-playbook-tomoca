@@ -1,17 +1,21 @@
 ---
 - name: Allow everything and enable UFW
+  become: yes
   ufw:
     state: enabled
     policy: allow
 - name: Set logging
+  become: yes
   ufw:
     logging: on
 - name: Allow all access to tcp port 80
+  become: yes
   ufw:
     rule: allow
     port: 80
     proto: tcp
 - name: Allow all access to tcp port "{{ ufw_http_dev_port }}"
+  become: yes
   ufw:
     rule: allow
     port: "{{ ufw_http_dev_port }}"
