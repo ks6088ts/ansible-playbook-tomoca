@@ -1,0 +1,23 @@
+---
+- name: "Go-Lang | Get $HOME"
+  shell: "echo $HOME"
+  register: shell_home_dir
+  changed_when: false
+  when: go_user_dir is not defined
+
+- name: "Go-Lang | Set $HOME"
+  set_fact:
+    go_user_dir: "{{ shell_home_dir.stdout }}"
+  when: go_user_dir is not defined
+
+- name: "Go-Lang | Define GOROOT"
+  set_fact:
+    GOROOT: /usr/local/go
+  when: GOROOT is not defined
+
+- name: "Go-Lang | Define GOPATH"
+  set_fact:
+    GOPATH: "{{ go_user_dir }}/go"
+  when:
+    - GOROOT is defined
+    - GOPATH is not defined

@@ -1,0 +1,43 @@
+---
+- name: Download the Go tarball
+  get_url:
+    url: "{{ go_download_location }}"
+    dest: /usr/local/src/{{ go_tarball }}
+    checksum: "{{ go_tarball_checksum }}"
+
+- name: Register the current Go version (if any)
+  command: "{{ GOROOT }}/bin/go version"
+  environment:
+    GOROOT: "{{ GOROOT }}"
+    GOPATH: "{{ GOPATH }}"
+  ignore_errors: yes
+  register: go_version
+  changed_when: false
+
+- name: Remove old installation of Go
+  file:
+    path: "{{ GOROOT }}"
+    state: absent
+  when: go_version is failed or go_version.stdout != go_version_target
+
+- name: Extract the Go tarball if Go is not yet installed or not the desired version
+  unarchive:
+    src: /usr/local/src/{{ go_tarball }}
+    dest: /usr/local
+    copy: no
+  when: go_version is failed or go_version.stdout != go_version_target
+
+- name: Add the Go bin directory to the PATH environment variable for all users
+  template:
+    src: go-bin.sh.j2
+    dest: /etc/profile.d/go-bin.sh
+    owner: root
+    mode: 0644
+
+- name: Set GOPATH for all users
+  template:
+    src: go-path.sh.j2
+    dest: /etc/profile.d/go-path.sh
+    owner: root
+    mode: 0644
+  when: set_go_path
