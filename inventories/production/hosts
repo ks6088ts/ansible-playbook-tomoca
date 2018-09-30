@@ -1,0 +1,15 @@
+[sakura_webservers]
+sakura-web01 ansible_host=160.16.242.179
+
+[sakura_dbservers]
+sakura-db01 ansible_host=160.16.242.179
+
+[webservers:children]
+sakura_webservers
+
+[dbservers:children]
+sakura_dbservers
+
+[sakuraservers:children]
+sakura_webservers
+sakura_dbservers
