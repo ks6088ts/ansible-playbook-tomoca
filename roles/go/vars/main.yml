@@ -1,2 +1,11 @@
 ---
 go_download_location: "https://dl.google.com/go/{{ go_tarball }}"
+go_get:
+- name: dep
+  url: github.com/golang/dep/cmd/dep
+- name: vgo
+  url: golang.org/x/vgo
+- name: websocket
+  url: github.com/gorilla/websocket
+- name: mysql
+  url: github.com/go-sql-driver/mysql

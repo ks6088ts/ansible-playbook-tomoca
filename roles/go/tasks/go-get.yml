@@ -1,0 +1,8 @@
+---
+- name: "Install go modules"
+  shell: "{{ GOROOT }}/bin/go get -u {{ item.url }}"
+  environment:
+    GOPATH: "{{ GOPATH }}"
+    GOROOT: "{{ GOROOT }}"
+  with_items: "{{ go_get }}"
+  changed_when: false
