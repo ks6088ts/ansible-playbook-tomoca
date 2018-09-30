@@ -1,2 +1,6 @@
 ---
-# vars file for roles/common
+common_packages:
+  - emacs
+  - git
+  - emacs
+  - curl

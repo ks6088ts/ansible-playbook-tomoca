@@ -1,0 +1,7 @@
+# Execute ansible playbook by the following command:
+#  $ ansible-playbook -i inventories/production/hosts webservers.yml --user ubuntu --ask-become-pass
+---
+- hosts: webservers
+  become: yes
+  roles:
+    - common
