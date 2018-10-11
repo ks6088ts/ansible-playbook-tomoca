@@ -1,0 +1,3 @@
+---
+systemd_rest_working_directory: "/home/ubuntu/django-rest-service/django_rest_service"
+systemd_rest_exec_start: "/home/ubuntu/django-rest-service/.venv/bin/gunicorn django_rest_service.wsgi --bind=0.0.0.0:8000"

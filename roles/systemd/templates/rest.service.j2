@@ -1,0 +1,12 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+ 
+[Service]
+User=ubuntu
+Group=ubuntu
+WorkingDirectory={{ systemd_rest_working_directory }}
+ExecStart={{ systemd_rest_exec_start }}
+
+[Install]
+WantedBy=multi-user.target

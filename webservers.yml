@@ -6,3 +6,4 @@
     - common
     - go
     - nginx
+    - systemd
