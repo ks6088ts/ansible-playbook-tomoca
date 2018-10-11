@@ -4,3 +4,4 @@ common_packages:
   - git
   - emacs
   - curl
+  - python3-venv
