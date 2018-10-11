@@ -1,0 +1,14 @@
+---
+- name: Install nginx packages
+  become: yes
+  apt:
+    name: "{{ nginx_packages }}"
+    state: present
+    update_cache: yes
+
+- name: Put nginx configuration file
+  become: yes
+  template:
+    src: tomoca.j2
+    dest: /etc/nginx/sites-enabled/default
+  notify: reload nginx

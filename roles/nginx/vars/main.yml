@@ -1,0 +1,5 @@
+---
+nginx_packages:
+  - nginx
+
+nginx_app_server: 127.0.0.1:8000
