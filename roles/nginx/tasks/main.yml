@@ -10,5 +10,20 @@
   become: yes
   template:
     src: tomoca.j2
-    dest: /etc/nginx/sites-enabled/default
+    dest: /etc/nginx/sites-available/tomoca
+  notify: reload nginx
+
+- name: Remove symlinks
+  become: yes
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: reload nginx
+
+- name: Create symlink to tomoca sites
+  become: yes
+  file:
+    src: /etc/nginx/sites-available/tomoca
+    dest: /etc/nginx/sites-enabled/tomoca
+    state: link
   notify: reload nginx
