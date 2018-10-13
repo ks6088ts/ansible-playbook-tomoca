@@ -1,0 +1,9 @@
+---
+- name: Clone repo
+  git:
+    repo: "{{ tomoca_repo_url }}"
+    dest: "{{ tomoca_repo_dest }}"
+
+- name: Setup environment
+  become: yes
+  shell: "{{ tomoca_repo_setup_bash }}"
