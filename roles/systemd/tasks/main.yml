@@ -6,6 +6,7 @@
     dest: /etc/systemd/system/rest.service
 
 - name: enable rest service
+  become: yes
   systemd:
     name: rest
     state: started
