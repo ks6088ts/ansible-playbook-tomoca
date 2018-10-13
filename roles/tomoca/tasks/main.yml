@@ -7,3 +7,11 @@
 - name: Setup environment
   become: yes
   shell: "{{ tomoca_repo_setup_bash }}"
+
+- name: Chmod repo recursively
+  become: yes
+  file:
+    dest: "{{ tomoca_repo_dest }}"
+    owner: root
+    mode: 0777
+    recurse: yes
