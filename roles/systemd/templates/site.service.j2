@@ -5,8 +5,8 @@ After=network.target
 [Service]
 User=ubuntu
 Group=ubuntu
-WorkingDirectory={{ systemd_rest.working_directory }}
-ExecStart={{ systemd_rest.exec_start }}
+WorkingDirectory={{ systemd_site.working_directory }}
+ExecStart={{ systemd_site.exec_start }}
 
 [Install]
 WantedBy=multi-user.target
