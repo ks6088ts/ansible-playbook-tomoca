@@ -1,17 +1,33 @@
 ---
 - name: Clone repo
   git:
-    repo: "{{ tomoca_repo_rest.url }}"
-    dest: "{{ tomoca_repo_rest.dest }}"
+    repo: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - "{{ tomoca_repo_rest }}"
+    - "{{ tomoca_repo_site }}"
 
-- name: Setup environment
+- name: Put environment file
+  become: yes
+  template:
+    src: .env.j2
+    dest: "{{ tomoca_repo_site.dest }}/.env"
+
+- name: Setup rest environment
   become: yes
   shell: "{{ tomoca_repo_rest.dest }}/setup.sh"
+
+- name: Setup site environment
+  become: yes
+  shell: "{{ tomoca_repo_site.dest }}/scripts/setup.sh"
 
 - name: Chmod repo recursively
   become: yes
   file:
-    dest: "{{ tomoca_repo_rest.dest }}"
+    dest: "{{ item.dest }}"
     owner: root
     mode: 0777
     recurse: yes
+  with_items:
+    - "{{ tomoca_repo_rest }}"
+    - "{{ tomoca_repo_site }}"

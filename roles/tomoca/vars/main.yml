@@ -2,3 +2,7 @@
 tomoca_repo_rest:
   url: https://github.com/ks6088ts/django-rest-service.git
   dest: /home/ubuntu/django-rest-service
+
+tomoca_repo_site:
+  url: https://github.com/ks6088ts/corporate-site.git
+  dest: /home/ubuntu/corporate-site
