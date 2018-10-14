@@ -1,4 +1,4 @@
 ---
-tomoca_repo_url: https://github.com/ks6088ts/django-rest-service.git
-tomoca_repo_dest: /home/ubuntu/django-rest-service
-tomoca_repo_setup_bash: "{{ tomoca_repo_dest }}/setup.sh"
+tomoca_repo_rest:
+  url: https://github.com/ks6088ts/django-rest-service.git
+  dest: /home/ubuntu/django-rest-service

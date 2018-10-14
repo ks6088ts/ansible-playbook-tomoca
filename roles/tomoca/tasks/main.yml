@@ -1,17 +1,17 @@
 ---
 - name: Clone repo
   git:
-    repo: "{{ tomoca_repo_url }}"
-    dest: "{{ tomoca_repo_dest }}"
+    repo: "{{ tomoca_repo_rest.url }}"
+    dest: "{{ tomoca_repo_rest.dest }}"
 
 - name: Setup environment
   become: yes
-  shell: "{{ tomoca_repo_setup_bash }}"
+  shell: "{{ tomoca_repo_rest.dest }}/setup.sh"
 
 - name: Chmod repo recursively
   become: yes
   file:
-    dest: "{{ tomoca_repo_dest }}"
+    dest: "{{ tomoca_repo_rest.dest }}"
     owner: root
     mode: 0777
     recurse: yes
